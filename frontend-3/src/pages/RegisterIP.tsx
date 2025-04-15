@@ -179,7 +179,7 @@ const RegisterIP: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">License Incentive (ETH)</label>
+            <label className="block text-sm font-medium text-gray-700">License Incentive (AVAX)</label>
             <input
               type="number"
               step="0.01"

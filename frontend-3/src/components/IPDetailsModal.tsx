@@ -1,6 +1,17 @@
 import React from 'react';
 import { IP } from '../types/IP';
-import { X, Calendar, Tag, Shield, Mail, MapPin, Book, Users, Globe, Calendar as PublishIcon } from 'lucide-react';
+import {
+  X,
+  Calendar,
+  Tag,
+  Shield,
+  Mail,
+  MapPin,
+  Book,
+  Users,
+  Globe,
+  Calendar as PublishIcon,
+} from 'lucide-react';
 
 interface IPDetailsModalProps {
   ip: IP;
@@ -10,18 +21,18 @@ interface IPDetailsModalProps {
 const IPDetailsModal: React.FC<IPDetailsModalProps> = ({ ip, onClose }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6">
+        {/* Modal Header */}
         <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
           <h2 className="text-2xl font-bold text-gray-900">IP Details</h2>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-500"
-          >
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-500">
             <X className="h-6 w-6" />
           </button>
         </div>
-        
+
+        {/* Modal Content */}
         <div className="px-6 py-4 space-y-6">
+          {/* IP Overview */}
           <div className="flex items-start gap-3">
             <Shield className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
             <div>
@@ -30,29 +41,25 @@ const IPDetailsModal: React.FC<IPDetailsModalProps> = ({ ip, onClose }) => {
             </div>
           </div>
 
+          {/* Date Info */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex items-center gap-2">
               <Calendar className="h-5 w-5 text-gray-400" />
-              <span className="text-gray-600">
-                Created: {ip.dateOfCreation}
-              </span>
+              <span className="text-gray-600">Created: {ip.dateOfCreation}</span>
             </div>
             <div className="flex items-center gap-2">
               <Calendar className="h-5 w-5 text-gray-400" />
-              <span className="text-gray-600">
-                Registered: {ip.dateOfRegistration}
-              </span>
+              <span className="text-gray-600">Registered: {ip.dateOfRegistration}</span>
             </div>
           </div>
 
+          {/* Owner Details */}
           <div className="border-t border-gray-200 pt-4">
             <h4 className="text-lg font-semibold text-gray-900 mb-3">Owner Details</h4>
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <Users className="h-5 w-5 text-gray-400" />
                 <span className="text-gray-600">{ip.ownerDetails?.name || 'N/A'}</span>
-
-              </div>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="h-5 w-5 text-gray-400" />
@@ -65,6 +72,7 @@ const IPDetailsModal: React.FC<IPDetailsModalProps> = ({ ip, onClose }) => {
             </div>
           </div>
 
+          {/* Optional Fields */}
           {ip.optionalFields && (
             <div className="border-t border-gray-200 pt-4">
               <h4 className="text-lg font-semibold text-gray-900 mb-3">Additional Details</h4>
@@ -112,21 +120,24 @@ const IPDetailsModal: React.FC<IPDetailsModalProps> = ({ ip, onClose }) => {
             </div>
           )}
 
+          {/* License Info */}
           <div className="border-t border-gray-200 pt-4">
             <div className="flex justify-between items-center">
               <div>
                 <h4 className="text-lg font-semibold text-gray-900">License</h4>
-                <p className="text-gray-600">License: {Array.isArray(ip.license) ? ip.license.join(', ') : ip.license || 'N/A'}
-</p>
+                <p className="text-gray-600">
+                  License: {Array.isArray(ip.license) ? ip.license.join(', ') : ip.license || 'N/A'}
+                </p>
               </div>
               <div className="text-right">
                 <p className="text-sm text-gray-500">License Incentive</p>
-                <p className="text-lg font-semibold text-blue-600">{ip.licenseIncentive} ETH</p>
+                <p className="text-lg font-semibold text-blue-600">{ip.licenseIncentive} AVAX</p>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
   );
 };
 

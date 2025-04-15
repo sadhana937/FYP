@@ -3,8 +3,12 @@ import axios from 'axios';
 import { useWallet } from '../context/WalletContext';
 import Navbar from '../components/Navbar';
 import IPDetailsModal from '../components/IPDetailsModal';
+// import IPDetailsModalContainer from '../components/IPDetailsModalContainer';
 import { IP } from '../types/IP';
-import { Shield, Calendar, Tag } from 'lucide-react';
+//import { Shield, Calendar, Tag } from 'lucide-react';
+import { Shield, Tag } from 'lucide-react';
+// import IPDetailsModalContainer from '../components/IPDetailsModalContainer';
+
 
 const Home: React.FC = () => {
   const { account } = useWallet();
@@ -12,6 +16,9 @@ const Home: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedIP, setSelectedIP] = useState<IP | null>(null);
+//const [selectedId, setSelectedId] = useState<number | null>(null);
+//const [showModal, setShowModal] = useState(false);
+
 
   useEffect(() => {
     const fetchIPs = async () => {
@@ -74,7 +81,7 @@ const Home: React.FC = () => {
               <div 
                 key={ip.id || ip._id} 
                 className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer transform transition-transform hover:scale-105"
-                onClick={() => setSelectedIP(ip)}
+onClick={() => setSelectedIP(ip)}
               >
                 <div className="p-6">
                   <div className="flex items-center mb-4">
@@ -82,12 +89,12 @@ const Home: React.FC = () => {
                     <h2 className="text-xl font-semibold text-gray-900">{ip.name}</h2>
                   </div>
                   <p className="text-gray-600 mb-4">{ip.description}</p>
-                  <div className="flex items-center mb-2">
+                  {/* <div className="flex items-center mb-2">
                     <Calendar className="h-4 w-4 text-gray-400 mr-2" />
                     <span className="text-sm text-gray-500">
                       Registered: {ip.dateOfRegistration || ip.registrationDate}
                     </span>
-                  </div>
+                  </div> */}
                   <div className="flex flex-wrap gap-2 mt-4">
                     {ip.tags && ip.tags.map((tag, index) => (
                       <span
@@ -103,7 +110,7 @@ const Home: React.FC = () => {
                 <div className="bg-gray-50 px-6 py-4">
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium text-gray-500">
-License: {Array.isArray(ip.license) ? ip.license.join(', ') : ip.license}
+                      License: {Array.isArray(ip.license) ? ip.license.join(', ') : ip.license}
                     </span>
                     <span className="text-sm font-medium text-blue-600">
                       {ip.licenseIncentive} AVAX
@@ -115,7 +122,7 @@ License: {Array.isArray(ip.license) ? ip.license.join(', ') : ip.license}
           </div>
         )}
       </div>
-      {selectedIP && (
+  {selectedIP && ( 
         <IPDetailsModal
           ip={selectedIP}
           onClose={() => setSelectedIP(null)}

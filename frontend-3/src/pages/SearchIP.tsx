@@ -3,7 +3,9 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import IPDetailsModal from '../components/IPDetailsModal';
 import { IP } from '../types/IP';
-import { Search, Shield, Calendar, Tag } from 'lucide-react';
+// import { Search, Shield, Calendar, Tag } from 'lucide-react';
+import { Search, Shield, Tag } from 'lucide-react';
+
 
 const SearchIP: React.FC = () => {
   const [keyword, setKeyword] = useState('');
@@ -105,12 +107,12 @@ const SearchIP: React.FC = () => {
                     <h2 className="text-xl font-semibold text-gray-900">{ip.name}</h2>
                   </div>
                   <p className="text-gray-600 mb-4">{ip.description}</p>
-                  <div className="flex items-center mb-2">
+                  {/* <div className="flex items-center mb-2">
                     <Calendar className="h-4 w-4 text-gray-400 mr-2" />
                     <span className="text-sm text-gray-500">
                       Registered: {ip.dateOfRegistration || ip.registrationDate}
                     </span>
-                  </div>
+                  </div> */}
                   <div className="flex flex-wrap gap-2 mt-4">
                     {ip.tags && ip.tags.map((tag, index) => (
                       <span
@@ -126,7 +128,7 @@ const SearchIP: React.FC = () => {
                 <div className="bg-gray-50 px-6 py-4">
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium text-gray-500">
-License: {Array.isArray(ip.license) ? ip.license.join(', ') : ip.license || 'N/A'}
+License: {Array.isArray(ip.license) ? ip.license.join(', ') : ip.license}
                     </span>
                     <button
                       onClick={(e) => handleRequestLicense(e, ip.id || ip._id!)}
