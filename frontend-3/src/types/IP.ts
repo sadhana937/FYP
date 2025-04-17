@@ -13,22 +13,19 @@ export interface OptionalFields {
 }
 
 export interface IP {
-  _id?: string;
-  id?: number;
+  // _id?: string;
+  id: number;
   name: string;
   description: string;
   ipType: string;
   dateOfCreation: string;
   dateOfRegistration: string;
   license: string[];
-  licenseIncentive: string;
+  licenseIncentive: number;
   tags: string[];
-  ownerDetails: OwnerDetails;
+  owner: OwnerDetails;
   optionalFields?: OptionalFields;
   ownerAddress?: string;
-  owner?: OwnerDetails;
-  creationDate?: string;
-  registrationDate?: string;
 }
 
 export interface TransferOwnership {

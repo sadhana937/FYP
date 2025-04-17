@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useWallet } from '../context/WalletContext';
+// import { useWallet } from '../context/WalletContext';
 import Navbar from '../components/Navbar';
 import { TransferOwnership as TransferOwnershipType } from '../types/IP';
 
@@ -22,13 +22,19 @@ const TransferOwnership: React.FC = () => {
     const { name, value } = e.target;
     if (name.includes('.')) {
       const [parent, child] = name.split('.');
-      setFormData(prev => ({
+     setFormData(prev => {
+      const parentValue = prev[parent as keyof typeof prev];
+
+      return {
         ...prev,
         [parent]: {
-          ...prev[parent as keyof TransferOwnershipType],
+          ...(typeof parentValue === 'object' && parentValue !== null
+            ? parentValue
+            : {}),
           [child]: value,
         },
-      }));
+      };
+    });
     } else {
       setFormData(prev => ({ ...prev, [name]: value }));
     }

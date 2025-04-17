@@ -97,7 +97,7 @@ const SearchIP: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {searchResults.map((ip) => (
               <div
-                key={ip.id || ip._id}
+                key={ip.id}
                 className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer transform transition-transform hover:scale-105"
                 onClick={() => setSelectedIP(ip)}
               >
@@ -131,7 +131,7 @@ const SearchIP: React.FC = () => {
 License: {Array.isArray(ip.license) ? ip.license.join(', ') : ip.license}
                     </span>
                     <button
-                      onClick={(e) => handleRequestLicense(e, ip.id || ip._id!)}
+                      onClick={(e) => handleRequestLicense(e, ip.id)}
                       className="inline-flex items-center px-3 py-1 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
                     >
                       Get License
@@ -151,7 +151,7 @@ License: {Array.isArray(ip.license) ? ip.license.join(', ') : ip.license}
       </div>
       {selectedIP && (
         <IPDetailsModal
-          ip={selectedIP}
+          id={selectedIP.id}
           onClose={() => setSelectedIP(null)}
         />
       )}

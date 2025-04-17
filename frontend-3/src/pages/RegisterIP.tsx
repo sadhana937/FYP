@@ -22,9 +22,9 @@ const RegisterIP: React.FC = () => {
     dateOfCreation: '',
     dateOfRegistration: '',
     license: ['MIT'],
-    licenseIncentive: '',
+    licenseIncentive: 0,
     tags: [],
-    ownerDetails: {
+    owner: {
       name: '',
       email: '',
       physicalAddress: '',
@@ -236,7 +236,7 @@ const RegisterIP: React.FC = () => {
                 <input
                   type="text"
                   name="ownerDetails.name"
-                  value={formData.ownerDetails?.name}
+                  value={formData.owner?.name || ''}
                   onChange={handleInputChange}
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                   required
@@ -247,7 +247,7 @@ const RegisterIP: React.FC = () => {
                 <input
                   type="email"
                   name="ownerDetails.email"
-                  value={formData.ownerDetails?.email}
+                  value={formData.owner?.email}
                   onChange={handleInputChange}
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                   required
@@ -259,7 +259,7 @@ const RegisterIP: React.FC = () => {
               <input
                 type="text"
                 name="ownerDetails.physicalAddress"
-                value={formData.ownerDetails?.physicalAddress}
+                value={formData.owner?.physicalAddress}
                 onChange={handleInputChange}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                 required

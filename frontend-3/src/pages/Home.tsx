@@ -31,13 +31,24 @@ const Home: React.FC = () => {
         } else {
           setIps(response.data);
         }
+        // console.log('Fetched IPs response data:', response.data);
+        // console.log('Fetched IPs:', ips);
+
+       
+
       } catch (err) {
         setError('Failed to fetch IPs. Please try again later.');
         console.error('Error fetching IPs:', err);
       } finally {
         setLoading(false);
       }
+
+      
     };
+
+//      useEffect(() => {
+//   console.log('Updated IPs:', ips);
+// }, [ips]);
 
     if (account) {
       fetchIPs();
@@ -70,7 +81,7 @@ const Home: React.FC = () => {
     <div>
       <Navbar />
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Your Intellectual Property</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">Registered Intellectual Property</h1>
         {ips.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-gray-600">You don't have any registered IPs yet.</p>
@@ -79,7 +90,7 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {ips.map((ip) => (
               <div 
-                key={ip.id || ip._id} 
+                key={ip.id} 
                 className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer transform transition-transform hover:scale-105"
 onClick={() => setSelectedIP(ip)}
               >
@@ -89,12 +100,6 @@ onClick={() => setSelectedIP(ip)}
                     <h2 className="text-xl font-semibold text-gray-900">{ip.name}</h2>
                   </div>
                   <p className="text-gray-600 mb-4">{ip.description}</p>
-                  {/* <div className="flex items-center mb-2">
-                    <Calendar className="h-4 w-4 text-gray-400 mr-2" />
-                    <span className="text-sm text-gray-500">
-                      Registered: {ip.dateOfRegistration || ip.registrationDate}
-                    </span>
-                  </div> */}
                   <div className="flex flex-wrap gap-2 mt-4">
                     {ip.tags && ip.tags.map((tag, index) => (
                       <span
@@ -113,7 +118,8 @@ onClick={() => setSelectedIP(ip)}
                       License: {Array.isArray(ip.license) ? ip.license.join(', ') : ip.license}
                     </span>
                     <span className="text-sm font-medium text-blue-600">
-                      {ip.licenseIncentive} AVAX
+                      {ip.licenseIncentive} AVAX 
+
                     </span>
                   </div>
                 </div>
@@ -124,7 +130,8 @@ onClick={() => setSelectedIP(ip)}
       </div>
   {selectedIP && ( 
         <IPDetailsModal
-          ip={selectedIP}
+          id={selectedIP.id}
+          
           onClose={() => setSelectedIP(null)}
         />
       )}
