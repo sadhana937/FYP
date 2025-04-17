@@ -97,7 +97,7 @@ onClick={() => setSelectedIP(ip)}
                 <div className="p-6">
                   <div className="flex items-center mb-4">
                     <Shield className="h-6 w-6 text-blue-600 mr-2" />
-                    <h2 className="text-xl font-semibold text-gray-900">{ip.name}</h2>
+                    <h2 className="text-xl font-semibold text-gray-900">{ip.id + 1}. {ip.name}</h2>
                   </div>
                   <p className="text-gray-600 mb-4">{ip.description}</p>
                   <div className="flex flex-wrap gap-2 mt-4">

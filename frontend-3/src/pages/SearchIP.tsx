@@ -23,6 +23,7 @@ const SearchIP: React.FC = () => {
 
     try {
       const response = await axios.get(`http://localhost:3000/search-ip-by-description/${encodeURIComponent(keyword.trim())}`);
+      // console.log('Search response data:', response.data);
       if (response.data.error) {
         setError(response.data.error);
         setSearchResults([]);
@@ -37,16 +38,17 @@ const SearchIP: React.FC = () => {
     }
   };
 
-  const handleRequestLicense = async (e: React.MouseEvent, ipId: string | number) => {
+  const handleRequestLicense = async (e: React.MouseEvent, ipId: number) => {
     e.stopPropagation(); // Prevent modal from opening when clicking the license button
     //const incentiveAmount = prompt('Please enter the incentive amount (in ETH):');
     //if (!incentiveAmount) return;
 
     try {
+      console.log('Requesting license for IP ID:', ipId);
       const response = await axios.post('http://localhost:3000/access-ip', {
-        id: ipId,
-//incentiveAmount,
+        id: ipId
       });
+      console.log('Response data:', response.data);
       if (response.data.error) {
         throw new Error(response.data.error);
       }

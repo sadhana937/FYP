@@ -235,7 +235,7 @@ const RegisterIP: React.FC = () => {
                 <label className="block text-sm font-medium text-gray-700">Name</label>
                 <input
                   type="text"
-                  name="ownerDetails.name"
+                  name="owner.name"
                   value={formData.owner?.name || ''}
                   onChange={handleInputChange}
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
@@ -246,7 +246,7 @@ const RegisterIP: React.FC = () => {
                 <label className="block text-sm font-medium text-gray-700">Email</label>
                 <input
                   type="email"
-                  name="ownerDetails.email"
+                  name="owner.email"
                   value={formData.owner?.email}
                   onChange={handleInputChange}
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
@@ -258,7 +258,7 @@ const RegisterIP: React.FC = () => {
               <label className="block text-sm font-medium text-gray-700">Physical Address</label>
               <input
                 type="text"
-                name="ownerDetails.physicalAddress"
+                name="owner.physicalAddress"
                 value={formData.owner?.physicalAddress}
                 onChange={handleInputChange}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"

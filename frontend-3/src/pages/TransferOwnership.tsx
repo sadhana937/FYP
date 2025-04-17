@@ -45,6 +45,7 @@ const TransferOwnership: React.FC = () => {
     setLoading(true);
 
     try {
+      formData.id = formData.id - 1;
       const response = await axios.post('http://localhost:3000/transfer-ownership', formData);
       if (response.data.error) {
         throw new Error(response.data.error);
